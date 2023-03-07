@@ -1,0 +1,68 @@
+E-commerce Endpoint Task
+
+Acceptance Criteria:
+
+User should be able to create an
+order. There input should be validated
+before being passed to the business layer. 
+
+The order they pass through 
+should have the following properties
+
+
+
+For product on an order there is a record created that describes the product and it's quantity at order.
+
+
+
+Implementation:
+-- APILayer----
+1.Create Order Controller
+2. Create CreateOrder endpoint
+3. CreateOrder recieves json as input
+--------------
+----BusinessLogic------
+4. ValidateOrder method makes sure that order request is following schema. Throw's errors if there is any issues.
+5. Validated order request assigned to OrderDTO. 
+6. OrderDTO passed to business logic
+7. ValidateOrder method applied if not valid throws error.
+8. If valid the OrderDTO is mapped to entity model and then passed to data context layer.
+---------------
+-----DataContext layer-----
+9. method adds order to respective tables in db.
+------------
+
+
+----Domain----
+Entities
+
+Order
+--------
+- id 
+- email (using email might be better
+for guest checkout and you can associate with registered user)
+- address
+- orderTotal
+
+OrderProductQuantity
+-------
+- id
+- orderId
+- product - apples  
+- quantity - 4
+
+OrderDTO's
+- OrderDTO
+ - ID
+ - email 
+ - address
+ - orderTotal
+ - Products
+
+
+
+json schema 
+
+-- Order
+-- Product
+-- Product
