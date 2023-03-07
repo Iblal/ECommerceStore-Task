@@ -1,7 +1,6 @@
 using EcommerceStoreDataAccess;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Configuration;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DatabaseContext>(options =>
-    options.UseSqlServer("Data Source=(localdb)\\ProjectModels;Initial Catalog=EcommerceStoreDev;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
